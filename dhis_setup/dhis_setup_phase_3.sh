@@ -42,9 +42,6 @@ alias c_restart='c_stop & c_start'
 
 sudo touch /home/dhis/tomcat-dhis/logs/catalina.out
 
-#installing curl
-sudo apt-get install curl -y
-
 #downloading dhis2 war file
 cd tomcat-dhis/webapps/
 curl https://s3-eu-west-1.amazonaws.com/releases.dhis2.org/2.25/dhis.war -o ROOT.war
