@@ -10,6 +10,8 @@ effective_cache_size = 8000MB
 checkpoint_completion_target = 0.8
 synchronous_commit = off
 wal_writer_delay = 10000ms
-' >> /etc/postgresql/9.4/main/postgresql.conf
+' >> /etc/postgresql/9.5/main/postgresql.conf
+
+psql -c "create extension postgis;" dhis2
 
 exit

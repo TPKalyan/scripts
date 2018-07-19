@@ -40,6 +40,8 @@ alias c_stop='/home/dhis/tomcat-dhis/bin/shutdown.sh'
 alias c_restart='c_stop & c_start'
 " >> /root/.bashrc
 
+. /root/.bashrc
+
 sudo touch /home/dhis/tomcat-dhis/logs/catalina.out
 
 #downloading dhis2 war file

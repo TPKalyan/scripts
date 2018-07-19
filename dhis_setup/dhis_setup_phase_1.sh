@@ -1,11 +1,11 @@
 #creating user
 # sudo su
-useradd -d /home/dhis -m dhis -s /bin/bash
-usermod -G sudo dhis
+sudo useradd -d /home/dhis -m dhis -s /bin/false
 passwd dhis
 
 #creating config
 mkdir /home/dhis/config
+chown dhis:dhis /home/dhis/config
 
 #locale
 sudo dpkg-reconfigure tzdata
@@ -37,5 +37,5 @@ deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main
 ' >> /etc/apt/sources.list
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 apt-get update -y
-sudo apt-get install postgresql-9.4 postgresql-contrib-9.4 postgresql-9.4-postgis-2.2 -y
+sudo apt-get install postgresql-9.5 postgresql-contrib-9.5 postgresql-9.5-postgis-2.2
 sudo su postgres
