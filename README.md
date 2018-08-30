@@ -6,8 +6,8 @@
  #### Installing curl
   ``apt-get update && apt-get install curl -y``
   #### Actual setup
-  ``curl https://raw.githubusercontent.com/tpkalyan/scripts/master/dhis_setup/dhis_setup_phase_1.sh -o dhis_setup_phase_1 && sh dhis_setup_phase_1``
+  ``curl https://raw.githubusercontent.com/tpkalyan/scripts/master/dhis_setup/dhis_setup_phase_1.sh -o dhis_setup_phase_1.sh && sh dhis_setup_phase_1.sh``
 
-  ``curl https://raw.githubusercontent.com/tpkalyan/scripts/master/dhis_setup/dhis_setup_phase_2.sh -o dhis_setup_phase_2 && sh dhis_setup_phase_2``
+  ``curl https://raw.githubusercontent.com/tpkalyan/scripts/master/dhis_setup/dhis_setup_phase_2.sh -o dhis_setup_phase_2.sh && sh dhis_setup_phase_2.sh``
 
-  ``curl https://raw.githubusercontent.com/tpkalyan/scripts/master/dhis_setup/dhis_setup_phase_3.sh -o dhis_setup_phase_3 && sh dhis_setup_phase_3``
+  ``curl https://raw.githubusercontent.com/tpkalyan/scripts/master/dhis_setup/dhis_setup_phase_3.sh -o dhis_setup_phase_3.sh && sh dhis_setup_phase_3.sh``
