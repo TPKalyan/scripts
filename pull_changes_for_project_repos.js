@@ -1,32 +1,31 @@
-const util = require('node:util');
-const exec = util.promisify(require('node:child_process').exec);
+import * as childProcess from 'child_process';
+import util from 'util';
+const exec = util.promisify(childProcess.exec);
 
-const execute = async (command, options = {}) => {
-  return { stdout, stderr } = await exec(command, options);
+const execute = async (command) => {
+    const { stdout, stderr } = await exec(command);
+    return {stdout, stderr};
 };
 
-let PWD = process.cwd();
-let teamName = process.argv[2];
+const listAllTeamDirectories = async (projectName) => {
+    const res = await execute(`ls`);
+    return res.stdout.trim().split('\n').filter(entry => entry.startsWith(projectName));
+};
 
-const listAllProjectRepos = async (teamName) => {
-  return await execute(`ls | grep "^${teamName}"`).then(res => res.stdout);
-}
+const pullNewChanges = (directoryName) => {
+    exec(`cd ${directoryName} && git pull --rebase`)
+      .then((res) => console.log("\x1b[32m%s\x1b[0m", `Sucessfully pulled ${directoryName} \n ${res.stdout}`))
+      .catch((err) => console.error("\x1b[31m%s\x1b[0m", `Failed to pull ${directoryName} \n ${err.stderr}`));
+};
 
-const main = async (teamName) => {
-  let reposString = await listAllProjectRepos(teamName);
-  reposString.trim().split("\n").forEach(async (repo) => {
-    let repoPath = `${PWD}/${repo}`;
-    execute(`git pull --rebase`, {cwd:repoPath})
-    .then(val => {
-      console.log("\x1b[32m", `Sucessfully pulled ${repo}`);
-      console.log(val.stdout)
-    })
-    .catch(err => {
-      console.log("\x1b[31m", `Failed to pull ${repo}`);
-      console.error(err.stderr);
-    });
-  });
+const main = async () => {
+    listAllTeamDirectories(process.argv[2])
+      .then(directories => {
+        directories.forEach((directory) => {
+          pullNewChanges(directory);
+        });
 
-}
+      });
+};
 
-main(teamName).then();
+main().then();
